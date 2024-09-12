@@ -1,12 +1,9 @@
-let
-  pkgs = import <nixpkgs> {};
-  hellolib = pkgs.callPackage ./hellolib.nix {};
-in
-pkgs.stdenv.mkDerivation rec {
-  pname = "HelloWorld";
-  version = "1.0.0";
-  src = ./helloapp;
+{ stdenv, cmake }:
 
-  nativeBuildInputs = [ pkgs.cmake ];
-  buildInputs = [ hellolib ];
+stdenv.mkDerivation rec {
+    pname = "hellolib";
+    version = "1.0.0";
+    src = ./hellolib; # Path to your source directory
+
+    nativeBuildInputs = [ cmake ];
 }
